@@ -1,6 +1,12 @@
+import SettingsHero from "./settings-hero"
+import SettingsLists from "./SettingsLists"
+import SettingsAccordion from "./SettingsAccordion"
+
 const Settings = () => {
     return <div>
-        This is the settings page
+        <SettingsHero/>
+        <SettingsLists/>
+        <SettingsAccordion/>
     </div>
 }
 
