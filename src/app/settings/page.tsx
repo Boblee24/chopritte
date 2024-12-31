@@ -1,13 +1,15 @@
-import SettingsHero from "./settings-hero"
-import SettingsLists from "./SettingsLists"
-import SettingsAccordion from "./SettingsAccordion"
+import SettingsHero from "../ui/settings/settings-hero"
+import SettingsLists from "../ui/settings/SettingsLists"
+import SettingsAccordion from "../ui/settings/SettingsAccordion"
 
 const Settings = () => {
-    return <div>
-        <SettingsHero/>
-        <SettingsLists/>
-        <SettingsAccordion/>
-    </div>
+    return (
+      <div className="bg-[#C7C7C71F]">
+        <SettingsHero />
+        <SettingsLists />
+        <SettingsAccordion />
+      </div>
+    );
 }
 
 export default Settings

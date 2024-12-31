@@ -22,7 +22,7 @@ const Footer = () => {
       </Link>
       <Link
         key="menu"
-        href="menu"
+        href="/menu"
         className={clsx("text-[#383838] flex flex-col items-center", {
           "text-[#E23E3E]": pathname === "/menu",
         })}
@@ -32,7 +32,7 @@ const Footer = () => {
       </Link>
       <Link
         key="cart"
-        href="cart"
+        href="/cart"
         className={clsx("flex flex-col items-center text-[#383838]", {
           "text-[#E23E3E]": pathname === "/cart",
         })}
@@ -43,12 +43,12 @@ const Footer = () => {
       
       <Link
         key="settings"
-        href="settings"
+        href="/settings"
         className={clsx("text-[#383838] flex flex-col items-center", {
           "text-[#E23E3E]": pathname === "/settings",
         })}
       >
-        <TbSettings2 className="h-6 w-6 " />
+        <TbSettings2 className="h-6 w-6" />
         <h1>Settings</h1>
       </Link>
     </div>

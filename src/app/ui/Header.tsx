@@ -3,7 +3,7 @@ import { FaBell, FaRegUser } from "react-icons/fa6";
 // import Logo from "@/app"
 const Header = () => {
   return (
-    <div className="flex items-center justify-between p-5">
+    <div className="fixed top-0 w-full flex items-center justify-between bg-white shadow-md z-50 p-3">
       <div>
         <FaRegUser className="h-7 w-7" />
       </div>
