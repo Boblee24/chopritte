@@ -8,10 +8,10 @@ const SettingsAccordion = () => {
                     <h1>FAQs</h1>
                     <IoIosArrowForward className="h-9 w-9 ml-auto" />
                 </div>
-                <div className="flex items-center p-3">
+                <Link href="/settings/contact" className="flex items-center p-3">
                     <h1>Contact Us</h1>
                     <IoIosArrowForward className="h-9 w-9 ml-auto" />
-                </div>
+                </Link>
                 <Link href="/settings/feedback" className="flex items-center p-3">
                     <h1>Give us Feedback</h1>
                     <IoIosArrowForward className="h-9 w-9 ml-auto" />
