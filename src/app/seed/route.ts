@@ -4,6 +4,9 @@ import { faker } from "@faker-js/faker";
 async function seedFoods() {
   const sql = neon(`${process.env.DATABASE_URL}`);
 
+  // Delete existing data
+  // await sql("DELETE FROM foods");
+
   // Generate 10 sample foods
   const foods = Array.from({ length: 10 }, () => ({
     name: faker.food.dish(),
@@ -11,22 +14,14 @@ async function seedFoods() {
       { length: faker.number.int({ min: 5, max: 7 }) },
       () => ({
         name: faker.food.ingredient(),
-        image: faker.image.urlLoremFlickr({
-          width: 100,
-          height: 100,
-          category: "food",
-        }), // Generate random ingredient image URL
+        image: `https://source.unsplash.com/100x100/?ingredient`, // Random ingredient image URL
       })
-    ), // Generating 5 random ingredients
-    calories: faker.number.int({ min: 1100, max: 1800 }), // Random calories between 100 and 800
-    image: faker.image.urlLoremFlickr({
-      height: 100,
-      width: 100,
-      category: "food",
-    }), // Generate random food image URL
+    ),
+    calories: faker.number.int({ min: 300, max: 800 }), // Random calories between 300 and 800
+    image: `https://source.unsplash.com/100x100/?food`, // Random food image URL
   }));
-  //delete existing data
-  await sql("DELETE FROM foods");
+
+  // console.log("Generated Foods:", JSON.stringify(foods, null, 2)); // Debugging log
 
   // Insert data into the 'foods' table
   for (const food of foods) {
