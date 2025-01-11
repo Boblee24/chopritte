@@ -2,6 +2,7 @@
 import {fetchFoods} from "@/app/lib/fetchFoods";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Loading from "./loading";
 const Home = () => {
     const [foods, setFoods] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -21,33 +22,34 @@ const Home = () => {
       getFoods();
     }, []);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Loading/>;
 
     return (
-      <div>
-        <h1>Foods</h1>
-        <ul>
-          {foods.map((food: any) => (
-            <li
-              key={food.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "1rem",
-              }}
-            >
-              <Image
-                src={food.image}
-                alt={food.name}
-                width={200}
-                height={200}
-                style={{ marginRight: "1rem" }}
-              />
-              <span>{food.name}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+    //   <div>
+    //     <h1>Foods</h1>
+    //     <ul>
+    //       {foods.map((food: any) => (
+    //         <li
+    //           key={food.id}
+    //           style={{
+    //             display: "flex",
+    //             alignItems: "center",
+    //             marginBottom: "1rem",
+    //           }}
+    //         >
+    //           <Image
+    //             src={food.image}
+    //             alt={food.name}
+    //             width={200}
+    //             height={200}
+    //             style={{ marginRight: "1rem" }}
+    //           />
+    //           <span>{food.name}</span>
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    <Loading/>
     );
 };
 export default Home

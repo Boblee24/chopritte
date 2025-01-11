@@ -13,8 +13,16 @@ export default {
         foreground: "var(--foreground)",
       },
       boxShadow: {
-        'top-bottom': '0 -4px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)',
-      }
+        "top-bottom":
+          "0 -4px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
+      },
+    },
+    keyframes: {
+      shimmer: {
+        "100%": {
+          transform: "translateX(100%)",
+        },
+      },
     },
   },
   plugins: [],
