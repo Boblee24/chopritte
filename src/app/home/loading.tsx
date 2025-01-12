@@ -1,10 +1,10 @@
-import { HomeHerosSkeleton, PopularCategorySkeleton } from "../ui/skeleton"
+import { HomeHerosSkeleton, PopularCategoriesSkeleton } from "../ui/skeleton"
 
 const Loading = () => {
     return (
         <div>
             <HomeHerosSkeleton/>
-            <PopularCategorySkeleton/>
+            <PopularCategoriesSkeleton/>
         </div>
     )
 }

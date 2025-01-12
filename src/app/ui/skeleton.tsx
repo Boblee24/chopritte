@@ -43,3 +43,13 @@ export const PopularCategorySkeleton = () => {
     </div>
   );
 };
+
+export const PopularCategoriesSkeleton = () => {
+  return (
+    <div className="flex flex-shrink-0 overflow-hidden gap-3 px-6">
+      <PopularCategorySkeleton />
+      <PopularCategorySkeleton />
+      <PopularCategorySkeleton />
+    </div>
+  );
+};
