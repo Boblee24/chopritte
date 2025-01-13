@@ -4,14 +4,14 @@ const shimmer =
 export const HomeHeroSkeleton = () => {
   return (
     <div
-      className={`${shimmer} relative mb-4 h-[254px] w-[280px] flex-nowrap flex-shrink-0 rounded-md bg-gray-100`}
+      className={`${shimmer} relative mb-4 h-[254px] w-[280px] flex-nowrap flex-shrink-0 rounded-md bg-gray-100 overflow-hidden`}
     >
-      <div className="h-[180px] w-36 rounded-md bg-gray-200 " />
-      <div className="flex">
+      <div className="h-[180px] w-full rounded-md bg-gray-200 " />
+      <div className="flex p-2">
         <div className="h-5 w-5 rounded-md bg-gray-200" />
         <div className="ml-auto h-4 w-20 rounded-md bg-gray-200" />
       </div>
-      <div className="flex">
+      <div className="flex p-2">
         <div className="h-5 w-5 rounded-full bg-gray-200" />
         <div className="ml-auto h-7 w-7 rounded-md bg-gray-200" />
       </div>
@@ -30,7 +30,7 @@ export function HomeHerosSkeleton() {
 export const PopularCategorySkeleton = () => {
   return (
     <div
-      className={` ${shimmer} w-[150px] h-[231px] flex flex-col items-center justify-between bg-gray-200 shadow-sm`}
+      className={` ${shimmer} relative w-[150px] h-[231px] flex-shrink-0 flex flex-col items-center justify-between bg-gray-200 shadow-sm overflow-hidden`}
     >
       <div className="w-[110px] h-[110px] bg-gray-300 rounded-full"></div>
 
@@ -46,7 +46,7 @@ export const PopularCategorySkeleton = () => {
 
 export const PopularCategoriesSkeleton = () => {
   return (
-    <div className="flex flex-shrink-0 overflow-hidden gap-3 px-6">
+    <div className="flex overflow-hidden gap-4 px-6">
       <PopularCategorySkeleton />
       <PopularCategorySkeleton />
       <PopularCategorySkeleton />

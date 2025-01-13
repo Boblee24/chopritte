@@ -4,6 +4,7 @@ const Loading = () => {
     return (
         <div>
             <HomeHerosSkeleton/>
+            
             <PopularCategoriesSkeleton/>
         </div>
     )

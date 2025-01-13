@@ -28,7 +28,6 @@ async function seedFoods() {
     }
   }
 
-
   // Delete existing data
   await sql("DELETE FROM foods");
 
@@ -40,12 +39,22 @@ async function seedFoods() {
         Array.from({ length: faker.number.int({ min: 5, max: 7 }) }).map(
           async () => ({
             name: faker.food.ingredient(),
-            image: await fetchImages(), // Fetch random ingredient image
+            image: faker.image.urlPicsumPhotos({
+              height: 200,
+              width: 200,
+              grayscale: false,
+              blur: 0,
+            }), // Fetch random ingredient image
           })
         )
       ),
       calories: faker.number.int({ min: 300, max: 800 }), // Random calories between 300 and 800
-      image: await fetchImages(), // Fetch random food image
+      image: faker.image.urlPicsumPhotos({
+        width: 200,
+        height: 200,
+        grayscale: false,
+        blur: 0,
+      }), // Fetch random food image
     }))
   );
 
@@ -58,7 +67,6 @@ async function seedFoods() {
   }
 
   console.log("Foods seeded successfully with images!");
-  
 }
 
 seedFoods().catch(console.error);
