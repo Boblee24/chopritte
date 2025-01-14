@@ -1,5 +1,4 @@
 "use client"
-import HomeHero from "../ui/menu/menuhero"
 
 const Home = () => {
     
