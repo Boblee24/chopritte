@@ -1,10 +1,8 @@
-import { HomeHerosSkeleton, PopularCategoriesSkeleton } from "../ui/skeleton"
+import { PopularCategoriesSkeleton } from "@/app/ui/skeleton"
 
 const Loading = () => {
     return (
         <div>
-            <HomeHerosSkeleton/>
-            
             <PopularCategoriesSkeleton/>
         </div>
     )

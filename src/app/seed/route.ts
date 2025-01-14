@@ -5,28 +5,28 @@ async function seedFoods() {
   const sql = neon(`${process.env.DATABASE_URL}`);
 
   // Function to fetch a random image from Unsplash
-  async function fetchImages() {
-    try {
-      const response = await fetch(
-        `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-      );
+  // async function fetchImages() {
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
+  //     );
 
-      if (response.status === 403) {
-        console.warn("Rate limit exceeded. Using placeholder image.");
-        return "https://via.placeholder.com/100";
-      }
+  //     if (response.status === 403) {
+  //       console.warn("Rate limit exceeded. Using placeholder image.");
+  //       return "https://via.placeholder.com/100";
+  //     }
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch images: ${response.status}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`Failed to fetch images: ${response.status}`);
+  //     }
 
-      const data = await response.json();
-      return data.urls.regular || "https://via.placeholder.com/100";
-    } catch (error) {
-      console.error("Error fetching images:", error);
-      return "https://via.placeholder.com/100";
-    }
-  }
+  //     const data = await response.json();
+  //     return data.urls.regular || "https://via.placeholder.com/100";
+  //   } catch (error) {
+  //     console.error("Error fetching images:", error);
+  //     return "https://via.placeholder.com/100";
+  //   }
+  // }
 
   // Delete existing data
   await sql("DELETE FROM foods");
@@ -55,14 +55,22 @@ async function seedFoods() {
         grayscale: false,
         blur: 0,
       }), // Fetch random food image
+      person_name : faker.person.fullName(),
+      person_image: faker.image.urlPicsumPhotos({
+        width: 100,
+        height: 100,
+        grayscale: false,
+        blur : 0,
+      }),
+      rating : faker.number.float({ multipleOf: 0.25, min: 3, max:5 })
     }))
   );
 
   // Insert data into the 'foods' table
   for (const food of foods) {
     await sql(
-      "INSERT INTO foods (name, ingredients, calories, image) VALUES ($1, $2, $3, $4)",
-      [food.name, JSON.stringify(food.ingredients), food.calories, food.image]
+      "INSERT INTO foods (name, ingredients, calories, image, person_name, person_image, rating) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      [food.name, JSON.stringify(food.ingredients), food.calories, food.image, food.person_name, food.person_image, food.rating]
     );
   }
 

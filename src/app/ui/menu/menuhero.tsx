@@ -2,9 +2,9 @@
 import {fetchFoods} from "@/app/lib/fetchFoods";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Loading from "../../home/loading";
+import Loading from "@/app/menu/hero/loading";
 import { Foods } from "../../lib/types";
-const HomeHero = () => {
+const MenuHero = () => {
     const [foods, setFoods] = useState<Foods[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -53,4 +53,4 @@ const HomeHero = () => {
       </div>
     );
 };
-export default HomeHero
+export default MenuHero

@@ -1,16 +1,11 @@
 "use client"
-import HomeHero from "../ui/home/homehero"
+import HomeHero from "../ui/menu/menuhero"
 
 const Home = () => {
     
     return(
         <div>
-            <h1>Find best recipes for cooking</h1>
-            {/*Search component*/}
-            <div>
-            <h1>Local Meal🔥</h1>
-            <HomeHero/>
-            </div>
+            This is the home page
         </div>
     )
 }

@@ -18,7 +18,7 @@ export const HomeHeroSkeleton = () => {
     </div>
   );
 };
-export function HomeHerosSkeleton() {
+export function MenuHerosSkeleton() {
   return (
     <div className="flex justify-between gap-3 overflow-hidden px-6">
       <HomeHeroSkeleton />
