@@ -6,6 +6,14 @@ export interface Foods {
     person_image: string,
     rating: number
 }
+export type mainFood = {
+    id: string,
+    name: string,
+    image: string,
+    person_name: string,
+    person_image: string,
+    rating: number
+}
 
 export const heroSettings = {
     // dots: true,

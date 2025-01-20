@@ -27,6 +27,15 @@ export function MenuHerosSkeleton() {
     </div>
   );
 }
+export function AllFoods () {
+  return (
+    <div className="flex flex-col justify-between gap-3 overflow-hidden px-6">
+      <HomeHeroSkeleton />
+      <HomeHeroSkeleton />
+      <HomeHeroSkeleton />
+    </div>
+  );
+}
 export const PopularCategorySkeleton = () => {
   return (
     <div
