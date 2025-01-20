@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Segment_1 from "./hero/section1";
 
 const Menu = () => {
