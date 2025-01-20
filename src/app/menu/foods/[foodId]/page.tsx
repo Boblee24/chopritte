@@ -9,7 +9,7 @@ interface Props {
 }
 
 const FoodDetails = async ({ params }: Props) => {
-  const { foodId } = await params;
+  const { foodId } = params;
   const foods: Foods[] = await fetchFoods();
   const food = foods.find((item) => item.id.toString() === foodId);
 
