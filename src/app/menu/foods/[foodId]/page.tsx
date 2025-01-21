@@ -11,8 +11,8 @@ export async function generateStaticParams() {
 }
 
 // Dynamic route component
-const FoodDetails = async ({ params }: { params: { foodId: string } }) => {
-  const { foodId } = params;
+const FoodDetails = async ({ params }: { params: Promise<{ foodId: string }> }) => {
+  const { foodId } = await params;
   const foods: Foods[] = await fetchFoods();
   const food = foods.find((item) => item.id.toString() === foodId);
 
