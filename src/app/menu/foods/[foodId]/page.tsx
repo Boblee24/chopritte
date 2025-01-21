@@ -2,13 +2,23 @@ import { fetchFoods } from "@/app/lib/fetchFoods";
 import { Foods } from "@/app/lib/types";
 import Image from "next/image";
 
-interface Props {
-  foodId: string; // Directly access the foodId from params
-  food: Foods | null; // Add a property for fetched food data
+// Generate the static parameters for all food items
+export async function generateStaticParams() {
+  const foods: Foods[] = await fetchFoods(); // Fetch all foods
+
+  return foods.map((food) => ({
+    foodId: food.id.toString(), // Return foodId as a string
+  }));
 }
 
-const FoodDetails = async ({ params }: { params: Props }) => {
+// Dynamic page component
+export default async function FoodDetails({
+  params,
+}: {
+  params: { foodId: string };
+}) {
   const { foodId } = await params;
+
   const foods: Foods[] = await fetchFoods();
   const food = foods.find((item) => item.id.toString() === foodId);
 
@@ -29,6 +39,4 @@ const FoodDetails = async ({ params }: { params: Props }) => {
       <p>Prepared by: {food.person_name}</p>
     </div>
   );
-};
-
-export default FoodDetails;
+}
