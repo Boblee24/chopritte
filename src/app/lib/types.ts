@@ -1,10 +1,17 @@
+export interface Ingredient {
+  name: string;
+  image: string;
+}
+
+
 export interface Foods {
-    id: string,
-    name: string,
-    image: string,
-    person_name: string,
-    person_image: string,
-    rating: number
+  id: string;
+  name: string;
+  image: string;
+  Ingredient: Ingredient[];
+  person_name: string;
+  person_image: string;
+  rating: number;
 }
 export type mainFood = {
     id: string,
