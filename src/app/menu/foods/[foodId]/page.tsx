@@ -6,6 +6,7 @@ interface Props {
   params: {
     foodId: string;
   };
+  data: Foods[]
 }
 
 const FoodDetails = async ({ params }: Props) => {
