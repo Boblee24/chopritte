@@ -2,21 +2,16 @@ import { fetchFoods } from "@/app/lib/fetchFoods";
 import { Foods } from "@/app/lib/types";
 import Image from "next/image";
 
+// Generates static paths for dynamic routes
 export async function generateStaticParams() {
   const foods: Foods[] = await fetchFoods();
-
   return foods.map((food) => ({
-    foodId: food.id.toString(), // Ensure IDs are strings
+    foodId: food.id.toString(),
   }));
 }
 
-interface Props {
-  params: {
-    foodId: string;
-  };
-}
-
-const FoodDetails = async ({ params }: Props) => {
+// Dynamic route component
+const FoodDetails = async ({ params }: { params: { foodId: string } }) => {
   const { foodId } = params;
   const foods: Foods[] = await fetchFoods();
   const food = foods.find((item) => item.id.toString() === foodId);
