@@ -28,7 +28,7 @@ async function seedFoods() {
   //   }
   // }
 
-  // Delete existing data
+  // Delete existing DATA
   await sql("DELETE FROM foods");
 
   // Generate 10 sample foods
