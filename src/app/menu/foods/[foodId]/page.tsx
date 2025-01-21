@@ -2,25 +2,24 @@ import { fetchFoods } from "@/app/lib/fetchFoods";
 import { Foods } from "@/app/lib/types";
 import Image from "next/image";
 
-// Generate the static parameters for all food items
 export async function generateStaticParams() {
-  const foods: Foods[] = await fetchFoods(); // Fetch all foods
+  const foods: Foods[] = await fetchFoods();
 
   return foods.map((food) => ({
-    foodId: food.id.toString(), // Return foodId as a string
+    foodId: food.id.toString(), // Ensure IDs are strings
   }));
 }
 
-// Dynamic page component
-export default async function FoodDetails({
-  params,
-}: {
-  params: { foodId: string };
-}) {
-  const { foodId } = await params;
+interface Props {
+  params: {
+    foodId: string;
+  };
+}
 
-  const foods : Foods[] = await fetchFoods();
-  const food = foods.find((item ) => item.id.toString() === foodId);
+const FoodDetails = async ({ params }: Props) => {
+  const { foodId } = params;
+  const foods: Foods[] = await fetchFoods();
+  const food = foods.find((item) => item.id.toString() === foodId);
 
   if (!food) return <div>Food not found</div>;
 
@@ -33,10 +32,12 @@ export default async function FoodDetails({
         height={200}
         width={200}
         className="w-full h-auto rounded-md"
-        priority={true}
+        priority
       />
       <p className="mt-2">Rating: {food.rating}</p>
       <p>Prepared by: {food.person_name}</p>
     </div>
   );
-}
+};
+
+export default FoodDetails;
