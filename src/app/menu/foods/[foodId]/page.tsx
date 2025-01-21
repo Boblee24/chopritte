@@ -1,12 +1,12 @@
 import { fetchFoods } from "@/app/lib/fetchFoods";
-import { Foods } from "@/app/lib/types";
+// import { Foods } from "@/app/lib/types";
 import Image from "next/image";
 
 // Generate the static parameters for all food items
 export async function generateStaticParams() {
-  const foods: Foods[] = await fetchFoods(); // Fetch all foods
+  const foods = await fetchFoods(); // Fetch all foods
 
-  return foods.map((food) => ({
+  return foods.map((food : any) => ({
     foodId: food.id.toString(), // Return foodId as a string
   }));
 }
@@ -19,8 +19,8 @@ export default async function FoodDetails({
 }) {
   const { foodId } = await params;
 
-  const foods: Foods[] = await fetchFoods();
-  const food = foods.find((item) => item.id.toString() === foodId);
+  const foods = await fetchFoods();
+  const food = foods.find((item : any) => item.id.toString() === foodId);
 
   if (!food) return <div>Food not found</div>;
 
