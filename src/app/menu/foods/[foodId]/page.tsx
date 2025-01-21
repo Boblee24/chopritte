@@ -1,14 +1,17 @@
-// src/app/menu/foods/[foodId]/page.tsx
-
 import { fetchFoods } from "@/app/lib/fetchFoods";
 import { Foods } from "@/app/lib/types";
 import Image from "next/image";
 
-interface FoodProps {
-  food: Foods | null;
+interface Props {
+  foodId: string; // Directly access the foodId from params
+  food: Foods | null; // Add a property for fetched food data
 }
 
-const FoodDetails = ({ food }: FoodProps) => {
+const FoodDetails = async ({ params }: { params: Props }) => {
+  const { foodId } = await params;
+  const foods: Foods[] = await fetchFoods();
+  const food = foods.find((item) => item.id.toString() === foodId);
+
   if (!food) return <div>Food not found</div>;
 
   return (
@@ -29,20 +32,3 @@ const FoodDetails = ({ food }: FoodProps) => {
 };
 
 export default FoodDetails;
-
-// src/app/menu/foods/[foodId]/page.tsx
-
-export async function getServerSideProps({
-  params,
-}: {
-  params: { foodId: string };
-}) {
-  const foods: Foods[] = await fetchFoods();
-  const food = foods.find((item) => item.id.toString() === params.foodId);
-
-  return {
-    props: {
-      food: food || null, // Handle case where food is not found
-    },
-  };
-}
