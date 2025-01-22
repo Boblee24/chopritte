@@ -1,6 +1,14 @@
-export interface Ingredient {
+export interface ingredient {
   name: string;
   image: string;
+  mass: number
+}
+export interface about{
+  fats: number;
+  calories: number;
+  carbs: number;
+  vitamins: number;
+  description:string;
 }
 
 
@@ -8,7 +16,8 @@ export interface Foods {
   id: string;
   name: string;
   image: string;
-  Ingredient: Ingredient[];
+  ingredients: ingredient[];
+  about: about;
   person_name: string;
   person_image: string;
   rating: number;

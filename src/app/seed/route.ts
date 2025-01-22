@@ -4,30 +4,6 @@ import { faker } from "@faker-js/faker";
 async function seedFoods() {
   const sql = neon(`${process.env.DATABASE_URL}`);
 
-  // Function to fetch a random image from Unsplash
-  // async function fetchImages() {
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-  //     );
-
-  //     if (response.status === 403) {
-  //       console.warn("Rate limit exceeded. Using placeholder image.");
-  //       return "https://via.placeholder.com/100";
-  //     }
-
-  //     if (!response.ok) {
-  //       throw new Error(`Failed to fetch images: ${response.status}`);
-  //     }
-
-  //     const data = await response.json();
-  //     return data.urls.regular || "https://via.placeholder.com/100";
-  //   } catch (error) {
-  //     console.error("Error fetching images:", error);
-  //     return "https://via.placeholder.com/100";
-  //   }
-  // }
-
   // Delete existing DATA
   await sql("DELETE FROM foods");
 
@@ -39,6 +15,7 @@ async function seedFoods() {
         Array.from({ length: faker.number.int({ min: 5, max: 7 }) }).map(
           async () => ({
             name: faker.food.ingredient(),
+            mass: faker.number.int({ min: 150, max: 200 }),
             image: faker.image.urlPicsumPhotos({
               height: 200,
               width: 200,
@@ -48,29 +25,44 @@ async function seedFoods() {
           })
         )
       ),
-      calories: faker.number.int({ min: 300, max: 800 }), // Random calories between 300 and 800
+      about: {
+        summary: faker.lorem.sentence(),
+        description: faker.lorem.paragraph(),
+        calories: faker.number.int({ min: 600, max: 800 }),
+        fats: faker.number.int({ min: 140, max: 200 }),
+        vitamins: faker.number.int({ min: 50, max: 100 }),
+        carbs: faker.number.int({ min: 220, max: 300 }),
+      },
       image: faker.image.urlPicsumPhotos({
         width: 200,
         height: 200,
         grayscale: false,
         blur: 0,
       }), // Fetch random food image
-      person_name : faker.person.fullName(),
+      person_name: faker.person.fullName(),
       person_image: faker.image.urlPicsumPhotos({
         width: 100,
         height: 100,
         grayscale: false,
-        blur : 0,
+        blur: 0,
       }),
-      rating : faker.number.float({ multipleOf: 0.25, min: 3, max:5 })
+      rating: faker.number.float({ multipleOf: 0.25, min: 3, max: 5 }),
     }))
   );
 
   // Insert data into the 'foods' table
   for (const food of foods) {
     await sql(
-      "INSERT INTO foods (name, ingredients, calories, image, person_name, person_image, rating) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-      [food.name, JSON.stringify(food.ingredients), food.calories, food.image, food.person_name, food.person_image, food.rating]
+      "INSERT INTO foods (name, ingredients, about, image, person_name, person_image, rating) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      [
+        food.name,
+        JSON.stringify(food.ingredients),
+        JSON.stringify(food.about),
+        food.image,
+        food.person_name,
+        food.person_image,
+        food.rating,
+      ]
     );
   }
 
