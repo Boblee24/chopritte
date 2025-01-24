@@ -28,7 +28,7 @@ const FoodDetails = async ({
             priority={true}
           />
         </div>
-        <div className="flex">
+        <div className="flex gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -46,34 +46,47 @@ const FoodDetails = async ({
           </h1>
         </div>
       </div>
-      <div>
+      <div className="p-6 shadow-top-bottom">
         <h1 className="font-semibold text-[1.2rem] text-[#383838] ">
           {food.name}
         </h1>
-        <div className="grid grid-cols-2 shadow-top-bottom ">
-          <div>
-            <p className="text-[1.2rem] font-semibold text-[#383838]">
-              {food.about?.calories}g
-            </p>
-            <h1>Calories</h1>
+        <div className="grid grid-cols-2 gap-6 ">
+          <div className="flex items-center gap-3">
+            <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg "></div>
+            <div>
+              <p className="text-[1.2rem] font-semibold text-[#383838]">
+                {food.about?.calories}g
+              </p>
+              <h1>Calories</h1>
+            </div>
           </div>
-          <div>
-            <p className="text-[1.2rem] font-semibold text-[#383838]">
-              {food.about?.fats}g
-            </p>
-            <h1>Fats</h1>
+          <div className="flex items-center gap-3">
+            <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg"></div>
+            <div>
+              <p className="text-[1.2rem] font-semibold text-[#383838]">
+                {food.about?.fats}g
+              </p>
+              <h1>Fats</h1>
+            </div>
           </div>
-          <div>
-            <p className="text-[1.2rem] font-semibold text-[#383838]">
-              {food.about?.carbs}g
-            </p>
-            <h1>Carbs</h1>
+          <div className="flex items-center gap-3">
+            <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg "></div>
+            <div>
+              <p className="text-[1.2rem] font-semibold text-[#383838]">
+                {food.about?.carbs}g
+              </p>
+              <h1>Carbs</h1>
+            </div>
           </div>
-          <div>
-            <p className="text-[1.2rem] font-semibold text-[#383838]">
-              {food.about?.vitamins}g
-            </p>
-            <h1>Vitamins</h1>
+
+          <div className="flex items-center gap-3">
+            <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg"></div>
+            <div>
+              <p className="text-[1.2rem] font-semibold text-[#383838]">
+                {food.about?.vitamins}g
+              </p>
+              <h1>Vitamins</h1>
+            </div>
           </div>
         </div>
       </div>
@@ -81,20 +94,25 @@ const FoodDetails = async ({
         <p>{food.about?.description}</p>
       </div>
       <div>
-        <h1>Ingredients</h1>
+        <h1 className="text-[1.2rem] font-semibold">Ingredients</h1>
         <div>
-          {food.ingredients?.map((item) => (
-            <div key={food.id} className="flex gap-2 bg-slate-400">
+          {food.ingredients?.map((item, index) => (
+            <div
+              key={`${item.name}-${index}`}
+              className="flex items-center gap-4 p-3 shadow-top-bottom rounded-xl my-3"
+            >
               <Image
                 src={item.image}
                 height={55}
                 width={55}
                 alt={item.name}
                 priority={true}
-                className="w-auto h-auto"
+                className="w-auto h-auto rounded-xl"
               />
-              <h1>{item.name}</h1>
-              <h2 className="ml-auto">{item.mass}g</h2>
+              <h1 className="font-semibold ">
+                {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+              </h1>
+              <h2 className="ml-auto text-[#A9A9A9] ">{item.mass}g</h2>
             </div>
           ))}
         </div>
