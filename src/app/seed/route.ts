@@ -66,7 +66,7 @@ async function seedFoods() {
     );
   }
 
-  console.log("Foods seeded successfully with images!");
+  // console.log("Foods seeded successfully with images!");
 }
 
-seedFoods().catch(console.error);
+// seedFoods().catch(console.error);

@@ -11,6 +11,16 @@ export interface about{
   description:string;
 }
 
+export interface CartState {
+  cart: Foods[];
+  addToCart: (food: Foods) => void;
+  removeFromCart: (foodId: string) => void;
+  clearCart: () => void;
+}
+
+export interface FoodCartItem {
+  id: string;
+}
 
 export interface Foods {
   id: string;

@@ -14,7 +14,10 @@ export default {
       },
       boxShadow: {
         "top-bottom":
-          "0 -4px 6px 0 rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
+          "0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.1)",
+        "top-sm": "0 -2px 4px rgba(0, 0, 0, 0.1)", 
+        "top-md": "0 -4px 6px rgba(0, 0, 0, 0.1)", 
+        soft: "0 1px 2px rgba(0, 0, 0, 0.05)", 
       },
     },
     keyframes: {

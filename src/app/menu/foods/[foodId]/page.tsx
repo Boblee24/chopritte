@@ -1,5 +1,8 @@
+
 import { fetchFoods } from "@/app/lib/fetchFoods";
 import { Foods } from "@/app/lib/types";
+import { useCartStore } from "@/app/store/cartStore";
+import AddToCart from "@/app/ui/buttons/addToCart";
 import Image from "next/image";
 
 const FoodDetails = async ({
@@ -7,24 +10,29 @@ const FoodDetails = async ({
 }: {
   params: Promise<{ foodId: string }>;
 }) => {
+
+  const { cart, addToCart, removeFromCart } = useCartStore((state) => ({
+    cart: state.cart,
+    addToCart: state.addToCart,
+    removeFromCart: state.removeFromCart,
+  }));
   const foodId = (await params).foodId;
   const foods: Foods[] = await fetchFoods();
   const food = foods.find((item) => item.id.toString() === foodId);
-  // console.log(food);
 
   if (!food) return <div>Food not found</div>;
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold">{food.name}</h1>
-      <div className="shadow-top-bottom w-[374px] h-[271px] rounded-lg flex flex-col justify-start p-3">
+      <h1 className="text-2xl font-bold pb-6 text-[#303030]">{food.name}</h1>
+      <div className="shadow-top-bottom min-w-[374px] h-[271px] rounded-2xl flex flex-col justify-start p-3 mb-[2rem]">
         <div className="mb-[28px]">
           <Image
             src={food.image}
             alt={food.name}
             height={200}
-            width={350}
-            className="w-[350px] h-[200px] rounded-md"
+            width={370}
+            className=" h-[200px] rounded-md"
             priority={true}
           />
         </div>
@@ -46,15 +54,13 @@ const FoodDetails = async ({
           </h1>
         </div>
       </div>
-      <div className="p-6 shadow-top-bottom">
-        <h1 className="font-semibold text-[1.2rem] text-[#383838] ">
-          {food.name}
-        </h1>
-        <div className="grid grid-cols-2 gap-6 ">
+      <div className="p-6 shadow-top-bottom rounded-2xl text-[#383838]">
+        <h1 className="font-semibold text-[1.2rem] mb-3">{food.name}</h1>
+        <div className="grid grid-cols-2 gap-6 justify-between">
           <div className="flex items-center gap-3">
             <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg "></div>
             <div>
-              <p className="text-[1.2rem] font-semibold text-[#383838]">
+              <p className="text-[1.2rem] font-semibold">
                 {food.about?.calories}g
               </p>
               <h1>Calories</h1>
@@ -63,16 +69,14 @@ const FoodDetails = async ({
           <div className="flex items-center gap-3">
             <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg"></div>
             <div>
-              <p className="text-[1.2rem] font-semibold text-[#383838]">
-                {food.about?.fats}g
-              </p>
+              <p className="text-[1.2rem] font-semibold">{food.about?.fats}g</p>
               <h1>Fats</h1>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg "></div>
             <div>
-              <p className="text-[1.2rem] font-semibold text-[#383838]">
+              <p className="text-[1.2rem] font-semibold">
                 {food.about?.carbs}g
               </p>
               <h1>Carbs</h1>
@@ -82,7 +86,7 @@ const FoodDetails = async ({
           <div className="flex items-center gap-3">
             <div className="h-[74px] w-2 bg-[#E23E3E] rounded-lg"></div>
             <div>
-              <p className="text-[1.2rem] font-semibold text-[#383838]">
+              <p className="text-[1.2rem] font-semibold">
                 {food.about?.vitamins}g
               </p>
               <h1>Vitamins</h1>
@@ -91,15 +95,18 @@ const FoodDetails = async ({
         </div>
       </div>
       <div>
-        <p>{food.about?.description}</p>
+        <p className="text-[#2E3236] my-6">{food.about?.description}</p>
       </div>
       <div>
-        <h1 className="text-[1.2rem] font-semibold">Ingredients</h1>
+        <div className="flex justify-between">
+          <h1 className="text-[1.2rem] font-semibold">Ingredients</h1>
+          <h2 className="text-[#A9A9A9]">{food.ingredients?.length} items</h2>
+        </div>
         <div>
           {food.ingredients?.map((item, index) => (
             <div
               key={`${item.name}-${index}`}
-              className="flex items-center gap-4 p-3 shadow-top-bottom rounded-xl my-3"
+              className="flex items-center gap-4 p-3 shadow-lg border-[1px] border-slate-200 border-solid rounded-xl my-3"
             >
               <Image
                 src={item.image}
@@ -119,6 +126,14 @@ const FoodDetails = async ({
       </div>
       <p className="mt-2">Rating: {food.rating}</p>
       <p>Prepared by: {food.person_name}</p>
+      <div className="flex justify-center my-9">
+        <button
+          className="bg-[#E23E3E] rounded-xl text-[#ffffff] px-[2rem] py-4 font-medium"
+          onClick={() => addToCart(food)}
+        >
+          Add to cart
+        </button>
+      </div>
     </div>
   );
 };
