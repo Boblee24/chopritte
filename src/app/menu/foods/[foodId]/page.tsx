@@ -1,7 +1,7 @@
 
 import { fetchFoods } from "@/app/lib/fetchFoods";
 import { Foods } from "@/app/lib/types";
-import { useCartStore } from "@/app/store/cartStore";
+// import { useCartStore } from "@/app/store/cartStore";
 import AddToCart from "@/app/ui/buttons/addToCart";
 import Image from "next/image";
 
@@ -11,11 +11,11 @@ const FoodDetails = async ({
   params: Promise<{ foodId: string }>;
 }) => {
 
-  const { cart, addToCart, removeFromCart } = useCartStore((state) => ({
-    cart: state.cart,
-    addToCart: state.addToCart,
-    removeFromCart: state.removeFromCart,
-  }));
+  // const { cart, addToCart, removeFromCart } = useCartStore((state) => ({
+  //   cart: state.cart,
+  //   addToCart: state.addToCart,
+  //   removeFromCart: state.removeFromCart,
+  // }));
   const foodId = (await params).foodId;
   const foods: Foods[] = await fetchFoods();
   const food = foods.find((item) => item.id.toString() === foodId);
@@ -127,12 +127,7 @@ const FoodDetails = async ({
       <p className="mt-2">Rating: {food.rating}</p>
       <p>Prepared by: {food.person_name}</p>
       <div className="flex justify-center my-9">
-        <button
-          className="bg-[#E23E3E] rounded-xl text-[#ffffff] px-[2rem] py-4 font-medium"
-          onClick={() => addToCart(food)}
-        >
-          Add to cart
-        </button>
+        <AddToCart food = {food} />
       </div>
     </div>
   );

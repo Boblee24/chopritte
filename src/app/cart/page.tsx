@@ -2,10 +2,12 @@
 import { useCartStore } from "../store/cartStore";
 
 const Cart = () => {
-  const { cart, clearCart } = useCartStore((state) => ({
-    cart: state.cart,
-    clearCart: state.clearCart,
-  }));
+//   const { cart, clearCart } = useCartStore((state) => ({
+//     cart: state.cart,
+//     clearCart: state.clearCart,
+//   }));
+  const cart = useCartStore((state) => state.cart);
+  const clearCart = useCartStore((state) => state.clearCart);
 
   return (
     <div>
@@ -13,8 +15,8 @@ const Cart = () => {
         <div>
           <h1>Cart</h1>
           <ul>
-            {cart.map((food) => (
-              <li key={food.id}>
+            {cart.map((food, index) => (
+              <li key={`${food.id}-${index}`}>
                 {food.name} 
               </li>
             ))}
