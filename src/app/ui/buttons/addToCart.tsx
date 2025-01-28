@@ -1,12 +1,8 @@
 "use client"
-
 import { Foods } from "@/app/lib/types";
 import { useCartStore } from "@/app/store/cartStore"
 
 const AddToCart = ({food} : {food: Foods}) => {
-    // const {addToCart} = useCartStore((state) => ({
-    //     addToCart: state.addToCart
-    // }))
     const addToCart = useCartStore((state) => state.addToCart);
     return (
       <div>

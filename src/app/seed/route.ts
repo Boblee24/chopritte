@@ -33,6 +33,7 @@ async function seedFoods() {
         vitamins: faker.number.int({ min: 50, max: 100 }),
         carbs: faker.number.int({ min: 220, max: 300 }),
       },
+      price: faker.number.int({min: 10, max: 19}) * 100,
       image: faker.image.urlPicsumPhotos({
         width: 200,
         height: 200,
@@ -53,7 +54,7 @@ async function seedFoods() {
   // Insert data into the 'foods' table
   for (const food of foods) {
     await sql(
-      "INSERT INTO foods (name, ingredients, about, image, person_name, person_image, rating) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      "INSERT INTO foods (name, ingredients, about, image, person_name, person_image, rating, price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [
         food.name,
         JSON.stringify(food.ingredients),
@@ -62,11 +63,12 @@ async function seedFoods() {
         food.person_name,
         food.person_image,
         food.rating,
+        food.price
       ]
     );
   }
 
-  // console.log("Foods seeded successfully with images!");
+  console.log("Foods seeded successfully with images!");
 }
 
-// seedFoods().catch(console.error);
+seedFoods().catch(console.error);

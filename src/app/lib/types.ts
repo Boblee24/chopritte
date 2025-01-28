@@ -15,6 +15,7 @@ export interface CartState {
   cart: Foods[];
   addToCart: (food: Foods) => void;
   removeFromCart: (foodId: string) => void;
+  updateQuantity: (foodId: string, quantity: number) => void;
   clearCart: () => void;
 }
 
@@ -28,8 +29,10 @@ export interface Foods {
   image: string;
   ingredients: ingredient[];
   about: about;
+  price: number;
   person_name: string;
   person_image: string;
+  quantity: number;
   rating: number;
 }
 export type mainFood = {
