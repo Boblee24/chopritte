@@ -15,7 +15,7 @@ const Cart = () => {
       {cart.length > 0 ? (
         <div>
           <h1>Cart</h1>
-          <div>
+          <div className="flex flex-col gap-4">
             {cart.map((food, index) => (
               <div key={`${food.id}-${index}`} className=" flex gap-3 items-center">
                 <div>
