@@ -28,9 +28,9 @@ const Cart = () => {
                     className="w-auto h-auto rounded-xl"
                   />
                 </div>
-                <div className="flex flex-col justify-between h-[60px]">
-                  <h2 className="font-semibold">{food.name}</h2>
-                  <h2 className="font-bold">N{food.price}</h2>
+                <div className="flex flex-col justify-between h-[60px] text-[14px]">
+                  <h2 className="font-medium">{food.name}</h2>
+                  <h2 className="font-semibold">N{food.price}</h2>
                 </div>
                 <div className=" ml-auto">
                   <Counter

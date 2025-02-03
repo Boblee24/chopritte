@@ -1,5 +1,6 @@
 "use client";
 
+import { MinusIcon, PlusIcon } from "@/app/assets/icons";
 import { useState } from "react";
 
 interface CounterProps {
@@ -28,19 +29,16 @@ const Counter: React.FC<CounterProps> = ({
   };
 
   return (
-    <div className="flex items-center space-x-4 text-[25px]">
+    <div className="flex items-center space-x-4 text-[25px] ">
       <button
-        className="border-2 border-solid border-black rounded-md "
+        className="bg-gray-100 p-2 rounded-md py-[.9rem]"
         onClick={handleDecrement}
       >
-        -
+        <PlusIcon />
       </button>
       <span className="text-lg font-semibold">{quantity}</span>
-      <button
-        className="bg-gray-200 px-3 py-2 rounded-md"
-        onClick={handleIncrement}
-      >
-        +
+      <button className="bg-gray-100 p-2  rounded-md" onClick={handleIncrement}>
+        <MinusIcon />
       </button>
     </div>
   );

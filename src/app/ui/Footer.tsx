@@ -5,6 +5,7 @@ import { MdOutlineRestaurantMenu } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import CartLength from "./cart/cartLengh";
 const Footer = () => {
   const pathname = usePathname();
 
@@ -33,12 +34,15 @@ const Footer = () => {
       <Link
         key="cart"
         href="/cart"
-        className={clsx("flex flex-col items-center text-[#383838]", {
+        className={clsx("flex relative flex-col items-center text-[#383838]", {
           "text-[#E23E3E]": pathname === "/cart",
         })}
       >
         <FaShoppingBag className="h-6 w-6 " />
         <h1>Cart</h1>
+        <div className="absolute bottom-[2rem] left-[1.4rem] z-100">
+          <CartLength/>
+        </div>
       </Link>
       
       <Link
