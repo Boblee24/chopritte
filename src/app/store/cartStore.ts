@@ -6,7 +6,7 @@ import { Foods, CartState } from "../lib/types";
 
 export const useCartStore = create<CartState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       cart: [],
       addToCart: (food: Foods) =>
         set((state) => {
