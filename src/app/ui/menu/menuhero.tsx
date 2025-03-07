@@ -5,10 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Loading from "@/app/menu/hero/loading";
 import { Foods } from "../../lib/types";
+import { useRouter } from "next/navigation";
 
 const MenuHero = () => {
   const [foods, setFoods] = useState<Foods[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter()
   
   useEffect(() => {
     const getFoods = async () => {
@@ -24,6 +26,9 @@ const MenuHero = () => {
 
     getFoods();
   }, []);
+  const navigateToFood = (id:string) => {
+    router.push(`/menu/foods/${id}`)
+  }
   if (loading) return <Loading />;
 
   return (
@@ -39,6 +44,7 @@ const MenuHero = () => {
           {foods.map((food) => (
             <div
               key={food.id}
+              onClick={() => navigateToFood(food.id)}
               className=" relative flex-shrink-0 h-[254px] w-[280px] items-center mb-4 "
             >
               <Image

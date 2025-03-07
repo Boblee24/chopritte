@@ -7,7 +7,7 @@ export async function fetchFoods(): Promise<Foods[]> {
       : process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000"; // Absolute path on the server
 
   try {
-    const response = await fetch(`${baseUrl}/api/foods`);
+    const response = await fetch(`${baseUrl}/api/foods`, {cache: "force-cache"});
 
     if (!response.ok) {
       throw new Error(`Failed to fetch foods: ${response.statusText}`);
